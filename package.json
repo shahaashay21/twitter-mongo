@@ -1,0 +1,17 @@
+{
+  "name": "twitter-mongo",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "bcrypt": "^0.8.5",
+    "connect-mongo": "^1.1.0",
+    "ejs": "*",
+    "express": "3.2.6",
+    "express-session": "^1.13.0",
+    "mongodb": "^2.1.10",
+    "mongoose": "^4.4.9"
+  }
+}

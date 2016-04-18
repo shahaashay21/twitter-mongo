@@ -1,0 +1,3 @@
+{"_id":{"$oid":"56f63c6f70f94ab02b7fc1ff"},"lastid":22,"table_name":"users","__v":0}
+{"_id":{"$oid":"56f6a7ba4bf3e0682e2ec425"},"lastid":0,"table_name":"hashtag","__v":0}
+{"_id":{"$oid":"56f6a7cf5f99b9c843b74ab1"},"lastid":149,"table_name":"tweets","__v":0}

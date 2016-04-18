@@ -1,5 +1,5 @@
 exports.wrong = function(callback){
-	console.log("Class errmsg and function wrong");
+	// console.log("Class errmsg and function wrong");
 	var data = {};
 	data['modal'] = 1;
 	data['alert'] = 1;
@@ -8,7 +8,7 @@ exports.wrong = function(callback){
 }
 
 exports.wrongwithmessage = function(callback){
-	console.log("Class errmsg and function wrongwithmessage");
+	// console.log("Class errmsg and function wrongwithmessage");
 	var data = {};
 	data['modal'] = 1;
 	data['alert'] = 1;
@@ -18,7 +18,7 @@ exports.wrongwithmessage = function(callback){
 }
 
 exports.wrongAuthWithMessage = function(callback){
-	console.log("Class errmsg and function wrongwithmessage");
+	// console.log("Class errmsg and function wrongwithmessage");
 	var data = {};
 	data['modal'] = 1;
 	data['alert'] = 1;

@@ -6,14 +6,14 @@ var Counter = require('./model/counter');
 
 exports.loginUser = function(req, res){
 
-	console.log("Class Login and function loginUser");
+	// console.log("Class Login and function loginUser");
 	var email = req.param('email-login');
 	var pass = req.param('pass-login');
 	
 	Users.findOne({email: email}, 'pass id', function(err, hash){
 		if(hash){
 			bcrypt.compare(pass, hash.pass, function(err,ans){
-				console.log(ans);
+				// console.log(ans);
 				if(ans){
 					req.session.uid = hash.id;
 				 	res.end(JSON.stringify('pass')); 

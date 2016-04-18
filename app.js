@@ -13,7 +13,7 @@ var express = require('express')
   , hash = require('./routes/hash');
 
 var mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost/twitter");
+mongoose.connect("mongodb://localhost/twitter?poolSize=5");
 
 var mongoURL = "mongodb://localhost:27017/twitter";
 var expressSession = require("express-session");
@@ -21,7 +21,7 @@ var mongoStore = require("connect-mongo")(expressSession);
 var app = express();
 
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 3002);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 

@@ -7,9 +7,7 @@ var Follow = require('./model/follow');
 var Users = require('./model/users');
 var HashTag = require('./model/hashtag');
 
-
-//FOR NOW VAR
-var delFilePath = "\\Workspace\\twitter-mongo\\public\\img\\";
+var path = require('path');
 
 //INSERT TWEET INTO DB
 exports.ins = function(req, res){
@@ -217,11 +215,12 @@ exports.deleteTweet = function(req,res){
 	var tweetid = req.param('id');
 	Tweets.findOne({id: tweetid}, 'img_url', function(err, img){
 		if(!(isEmpty(img.img_url))){
-			fs.unlink(delFilePath+img.img_url, function(err) {
+			var dir = path.join(__dirname, '../public/img/');
+			fs.unlink(dir+img.img_url, function(err) {
 			   if (err) {
 			       return console.error(err);
 			   }
-			   console.log("File deleted successfully!");
+			   // console.log("File deleted successfully!");
 			   Tweets.remove({$or: [{parent_id: tweetid},{id: tweetid}]}, function(err){
 					HashTag.remove({tweet_id: tweetid}, function(err){
 						Users.update({}, {$pull: {likes: tweetid, retweets: tweetid}}, {multi: true}, function(err, update){
@@ -272,7 +271,7 @@ exports.suggest = function(req,res){
 		// console.log(q);
 		// HashTag.find('hashtag', {hashtag: new RegExp('^'+q,'i')}).limit(5).exec(function(err, hashtag){
 		HashTag.aggregate([{$match: {hashtag: new RegExp('^'+q,'i')}}, {$group: {_id:'$hashtag', hashtag: {$first:'$hashtag'}}}, {$limit: 5}]).exec(function(err, hashtag){
-			console.log(hashtag);
+			// console.log(hashtag);
 			res.json(hashtag);
 		});
 	}else if(q.charAt(0) == '@'){

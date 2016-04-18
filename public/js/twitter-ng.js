@@ -39,7 +39,7 @@ app.controller("twitter",function($scope, $http, $location){
 	$scope.tweetsubmit = function(){
 		// console.log(window.file);
 		var ret = 0; 
-		if(!window.file){
+		if(!window.file && window.file != ""){
 			if($scope.tweet.length > 0 && $scope.tweet.length <= 140){
 			}else{
 				ret = 1;
@@ -50,10 +50,19 @@ app.controller("twitter",function($scope, $http, $location){
 		if(ret == 0){
 			var formData = new FormData();
 		    var file = window.file;
-		    if(file && filename){
-		    	filename = document.getElementById('twimage').value;
+		    filename = document.getElementById('twimage').value;
+		    filename1 = document.getElementById('twimage1').value;
+		    console.log(file);
+		    console.log(filename);
+		    if(file){
+		    	if(filename){
+		    		formData.append('url', filename);
+		    	}
+		    	if(filename1){
+		    		formData.append('url', filename);
+		    	}
+		    	// console.log('IN FILE');
 		    	formData.append('myFile', file);
-		    	formData.append('url', filename);
 		    }
 		    formData.append('tweet', $scope.tweet);
 		    // console.log(filename);
@@ -71,9 +80,10 @@ app.controller("twitter",function($scope, $http, $location){
 					$scope.recenttweet();
 					$scope.totalTweet += 1;
 					$('#previewing').css("display", "none");
-					if(file && filename){
+					if(file){
 						window.file = "";
 						document.getElementById('twimage').value = "";
+						document.getElementById('twimage1').value = "";
 					}
 			    }
 			}

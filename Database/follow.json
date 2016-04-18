@@ -1,0 +1,7 @@
+{"_id":{"$oid":"56feb4ec1d8068e4561802b0"},"followers_id":11,"following_id":14,"__v":0}
+{"_id":{"$oid":"56feb618a8e9e5f830c24246"},"followers_id":19,"following_id":11,"__v":0}
+{"_id":{"$oid":"56feb623a8e9e5f830c24247"},"followers_id":19,"following_id":14,"__v":0}
+{"_id":{"$oid":"57015fb889fc822034620522"},"followers_id":14,"following_id":11,"__v":0}
+{"_id":{"$oid":"57015ff589fc822034620524"},"followers_id":21,"following_id":11,"__v":0}
+{"_id":{"$oid":"57015ffb89fc822034620525"},"followers_id":21,"following_id":19,"__v":0}
+{"_id":{"$oid":"5701600289fc822034620526"},"followers_id":21,"following_id":14,"__v":0}

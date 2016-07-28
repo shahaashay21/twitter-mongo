@@ -13,9 +13,11 @@ var express = require('express')
   , hash = require('./routes/hash');
 
 var mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost/twitter?poolSize=5");
+mongoose.connect("mongodb://clonetwitter:clonetwitter@ds031975.mlab.com:31975/clonetwitter");
+// mongoose.connect("mongodb://localhost/twitter?poolSize=5"); //LOCAL USE
 
-var mongoURL = "mongodb://localhost:27017/twitter";
+var mongoURL = "mongodb://clonetwitter:clonetwitter@ds031975.mlab.com:31975/clonetwitter";
+// var mongoURL = "mongodb://localhost/twitter"; //LOCAL USE
 var expressSession = require("express-session");
 var mongoStore = require("connect-mongo")(expressSession);
 var app = express();

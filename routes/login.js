@@ -13,7 +13,7 @@ exports.loginUser = function(req, res){
 	Users.findOne({email: email}, 'pass id', function(err, hash){
 		if(hash){
 			bcrypt.compare(pass, hash.pass, function(err,ans){
-				// console.log(ans);
+				console.log(ans);
 				if(ans){
 					req.session.uid = hash.id;
 				 	res.end(JSON.stringify('pass')); 

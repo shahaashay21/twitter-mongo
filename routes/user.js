@@ -110,7 +110,7 @@ exports.addinfo = function(req,res){
 		message['us-contact'] = "Wrong contact information";
 		msgchk = 1;
 	}
-	if(user.bday != "" || user.bday != null){
+	if(user.bday && user.bday != "" && user.bday != null){
 		// regular expression to match required date format
 	    re = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
 

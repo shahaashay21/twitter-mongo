@@ -19,7 +19,7 @@ exports.index = function(req, res){
 		if(data.length <= 0){
 			counterData = [{"lastid":1,"table_name":"users"},{"lastid":1,"table_name":"hashtag"},{"lastid":1,"table_name":"tweets"}];
 			Counter.insertMany(counterData,function(err, suc){
-				console.log(suc);
+				res.render('index', { userid: '' });
 			})
 		}else{
 			if(req.session.uid){

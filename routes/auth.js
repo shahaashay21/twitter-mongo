@@ -1,4 +1,4 @@
-ar bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt');
 var Users = require('users');
 exports.check = function(email,pass, callback){
 	console.log("Class auth and function check");

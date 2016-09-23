@@ -25,7 +25,10 @@ exports.ins = function(req, res){
 	if(!(isEmpty(req.files))){
 		if(!(isEmpty(req.files.myFile.path))){
 			var file = req.files.myFile.path;
-			filename = file.substr((file.indexOf('\\img\\')+5));
+			console.log(file);
+			// filename = file.substr((file.indexOf('\\img\\')+5));
+			filename = file.substr((file.lastIndexOf("\/img\/")+5));
+			console.log(filename);
 		}
 	}
 	var handleWithSpace = tweet.match(/(^@\w+| @\w+| @\w+)/g);

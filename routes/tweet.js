@@ -24,7 +24,6 @@ exports.ins = function(req, res){
 
 
 	//express-fileupload
-	console.log(req.files);
 	var filename = "";
 	if(!(isEmpty(req.files))){
 		let myFile = req.files.myFile;

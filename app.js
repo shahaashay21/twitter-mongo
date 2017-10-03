@@ -2,12 +2,14 @@
 /**
  * Module dependencies.
  */
-
+var bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
+  , formidable = require('formidable')
   , login = require('./routes/login')
   , tweet = require('./routes/tweet')
   , hash = require('./routes/hash');
@@ -30,23 +32,16 @@ app.set('view engine', 'ejs');
 
 app.use(express.favicon());
 app.use(express.logger('dev'));
-app.use(express.bodyParser({
-	keepExtensions: true, 
-    uploadDir: __dirname + '/public/img',
-    limit: '3mb'}));
+// app.use(express.bodyParser({
+// 	keepExtensions: true, 
+//     uploadDir: __dirname + '/public/img',
+//     limit: '3mb'}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.methodOverride());
 
-// app.use(expressSession({
-// 	secret: 'aashaytwitter',
-// 	resave: false,  //don't save session if unmodified
-// 	saveUninitialized: false,	// don't create session until something stored
-// 	duration: 30 * 60 * 1000,    
-// 	activeDuration: 5 * 60 * 1000,
-// 	cookie: { maxAge: 60000 },
-// 	store: new mongoStore({
-// 		url: mongoURL
-// 	})
-// }));
+app.use(fileUpload());
+
 
 //SETTING UP SESSION
 app.use(expressSession({

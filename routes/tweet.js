@@ -12,25 +12,45 @@ var path = require('path');
 //INSERT TWEET INTO DB
 exports.ins = function(req, res){
 	console.log("Class tweet and function ins");
-	// console.log(req.body);
- //    console.log(req.files);
-	// console.log(req.param('tweet'));
+	// console.log(req.param);
+
 	var handle =[];
 	var hash = [];
 	var tweet = "";
 	if(req.param('tweet') && req.param('tweet') != "undefined"){
 		tweet = req.param('tweet');
 	}
+
+
+
+	//express-fileupload
+	console.log(req.files);
 	var filename = "";
 	if(!(isEmpty(req.files))){
-		if(!(isEmpty(req.files.myFile.path))){
-			var file = req.files.myFile.path;
-			console.log(file);
-			// filename = file.substr((file.indexOf('\\img\\')+5));
-			filename = file.substr((file.lastIndexOf("\/img\/")+5));
-			console.log(filename);
-		}
+		let myFile = req.files.myFile;
+		var filePath = path.join(__dirname, '../public/img/');
+		filename = req.files.myFile.name;
+		myFile.mv(filePath + req.files.myFile.name, function(err){
+			if (err)
+		      return res.status(500).send(err);
+		    
+		});
 	}
+
+	// var filename = "";
+	// if(!(isEmpty(req.files))){
+	// 	if(!(isEmpty(req.files.myFile.path))){
+	// 		var file = req.files.myFile.path;
+	// 		console.log(file);
+	// 		// filename = file.substr((file.indexOf('\\img\\')+5));
+	// 		filename = file.substr((file.lastIndexOf("\/img\/")+5));
+	// 		console.log(filename);
+	// 	}
+	// }
+
+
+
+
 	var handleWithSpace = tweet.match(/(^@\w+| @\w+| @\w+)/g);
 	if(handleWithSpace){
 		for(var i=0; i<handleWithSpace.length; i++){
@@ -221,7 +241,7 @@ exports.deleteTweet = function(req,res){
 			var dir = path.join(__dirname, '../public/img/');
 			fs.unlink(dir+img.img_url, function(err) {
 			   if (err) {
-			       return console.error(err);
+			       console.error(err);
 			   }
 			   // console.log("File deleted successfully!");
 			   Tweets.remove({$or: [{parent_id: tweetid},{id: tweetid}]}, function(err){

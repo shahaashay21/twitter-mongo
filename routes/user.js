@@ -2,6 +2,7 @@
 /*
  * GET users listing.
  */
+ var path = require('path');
 var errmsg = require('./errmsg');
 
 //Collections
@@ -172,17 +173,35 @@ exports.addinfo = function(req,res){
 exports.updateprof = function(req,res){
 	// console.log(req.files.profPhoto.File);
 	console.log(req.param('url'));
+
+	var filename = "";
 	if(!(isEmpty(req.files))){
-		if(!(isEmpty(req.files.myFile.path))){
-			var file = req.files.myFile.path;
-			filename = file.substr((file.indexOf('\\img\\')+5));
-			Users.update({id: req.session.uid}, {dp:filename}, function(err, update){
-				if(!err){
-					res.json('Ok');
-				}
-			});
-		}
+		let myFile = req.files.myFile;
+		var filePath = path.join(__dirname, '../public/img/');
+		filename = req.files.myFile.name;
+		myFile.mv(filePath + req.files.myFile.name, function(err){
+			if (err)
+		      return res.status(500).send(err);
+		});
+		Users.update({id: req.session.uid}, {dp:filename}, function(err, update){
+			if(!err){
+				res.json('Ok');
+			}
+		});
 	}
+
+
+	// if(!(isEmpty(req.files))){
+	// 	if(!(isEmpty(req.files.myFile.path))){
+	// 		var file = req.files.myFile.path;
+	// 		filename = file.substr((file.indexOf('\\img\\')+5));
+	// 		Users.update({id: req.session.uid}, {dp:filename}, function(err, update){
+	// 			if(!err){
+	// 				res.json('Ok');
+	// 			}
+	// 		});
+	// 	}
+	// }
 }
 
 //CHECK OBJECT IS EMPTY OR NOT
